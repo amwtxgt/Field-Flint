@@ -15,7 +15,7 @@
             <v-card>
               <v-card-title>主窗口内容</v-card-title>
               <v-card-text>
-                <p>{{ $t('hello') }}</p>
+                <p>{{ t('hello') }}</p>
                 <v-btn @click="openWindow2">打开窗口2</v-btn>
               </v-card-text>
             </v-card>
@@ -29,7 +29,9 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const theme = useTheme()
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'

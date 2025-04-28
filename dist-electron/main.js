@@ -1,22 +1,74 @@
 "use strict";
 const electron = require("electron");
 const path = require("path");
+let currentTheme = "light";
+electron.ipcMain.handle("get-theme", () => currentTheme);
+electron.ipcMain.on("set-theme", (_, theme) => {
+  currentTheme = theme;
+});
+electron.app.whenReady().then(() => {
+  electron.session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        "Content-Security-Policy": [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+          "style-src 'self' 'unsafe-inline';",
+          "img-src 'self' data: https: http:;",
+          "font-src 'self' data: https: http:;",
+          "connect-src 'self' https: http:;"
+        ]
+      }
+    });
+  });
+});
 async function createWindow() {
   const mainWindow = new electron.BrowserWindow({
-    show: false,
+    show: true,
     webPreferences: {
-      preload: path.join(__dirname, "../preload.js"),
+      preload: path.join(__dirname, "./preload.js"),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
   const window2 = new electron.BrowserWindow({
-    show: false,
+    show: true,
     webPreferences: {
-      preload: path.join(__dirname, "../preload.js"),
+      preload: path.join(__dirname, "./preload.js"),
       contextIsolation: true,
       nodeIntegration: false
     }
+  });
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        "Content-Security-Policy": [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+          "style-src 'self' 'unsafe-inline';",
+          "img-src 'self' data: https: http:;",
+          "font-src 'self' data: https: http:;",
+          "connect-src 'self' https: http:;"
+        ]
+      }
+    });
+  });
+  window2.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        "Content-Security-Policy": [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
+          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+          "style-src 'self' 'unsafe-inline';",
+          "img-src 'self' data: https: http:;",
+          "font-src 'self' data: https: http:;",
+          "connect-src 'self' https: http:;"
+        ]
+      }
+    });
   });
   if (process.env.VITE_DEV_SERVER_URL) {
     await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
