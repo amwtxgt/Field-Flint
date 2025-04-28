@@ -33,8 +33,8 @@ async function createWindow() {
 
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + '/src/pages/index/index.html')
-    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/src/pages/Window2/index.html')
+    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/index/index.html')
+    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
     mainWindow.webContents.openDevTools()
   } else {
     await mainWindow.loadFile(join(__dirname, '../dist/pages/index/index.html'))

@@ -14,10 +14,12 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "assets/*": ["assets/*"],
+      "pages/*": ["pages/*"],
+      "~/*": ["./*"]
     },
     "types": ["vite/client", "vue", "vuetify"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "electron/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","types/**/*.d.ts", "pages/**/*.ts", "pages/**/*.tsx", "pages/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 

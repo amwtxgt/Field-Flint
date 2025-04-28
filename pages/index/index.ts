@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from '@/pages/index/index.vue'
+import App from 'pages/index/index.vue'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -7,7 +7,7 @@ import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
-import '@/styles/main.css'
+import 'assets/styles/main.css'
 import 'tailwindcss'
 
 const vuetify = createVuetify({

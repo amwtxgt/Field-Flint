@@ -1,6 +1,1 @@
-"use strict";
-const electron = require("electron");
-electron.contextBridge.exposeInMainWorld("electronAPI", {
-  setTheme: (theme) => electron.ipcRenderer.send("set-theme", theme),
-  getTheme: () => electron.ipcRenderer.invoke("get-theme")
-});
+"use strict";const e=require("electron");e.contextBridge.exposeInMainWorld("electronAPI",{setTheme:t=>e.ipcRenderer.send("set-theme",t),getTheme:()=>e.ipcRenderer.invoke("get-theme")});

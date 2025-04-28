@@ -53,14 +53,16 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/pages/index/index.html'),
-        window2: resolve(__dirname, 'src/pages/Window2/index.html'),
+        main: resolve(__dirname, 'pages/index/index.html'),
+        window2: resolve(__dirname, 'pages/Window2/index.html'),
       },
     },
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      'assets': resolve(__dirname, 'assets'),
+      'pages': resolve(__dirname, 'pages'),
+      '~': resolve(__dirname),
     },
   },
 }) 
