@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import Window2 from './index.vue'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -27,7 +27,7 @@ const i18n = createI18n({
   }
 })
 
-const app = createApp(App)
+const app = createApp(Window2)
 app.use(vuetify)
 app.use(i18n)
 app.use(createPinia())

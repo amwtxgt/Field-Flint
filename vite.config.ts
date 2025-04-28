@@ -53,8 +53,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        window2: resolve(__dirname, 'window2.html'),
+        main: resolve(__dirname, 'src/pages/index/index.html'),
+        window2: resolve(__dirname, 'src/pages/Window2/index.html'),
       },
     },
   },

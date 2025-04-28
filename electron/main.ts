@@ -1,6 +1,5 @@
 import { app, BrowserWindow, ipcMain, session } from 'electron'
 import { join } from 'path'
-import { URL } from 'url'
 
 // 存储当前主题
 let currentTheme = 'light'
@@ -9,25 +8,6 @@ let currentTheme = 'light'
 ipcMain.handle('get-theme', () => currentTheme)
 ipcMain.on('set-theme', (_, theme) => {
   currentTheme = theme
-})
-
-// 设置全局 CSP
-app.whenReady().then(() => {
-  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': [
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
-          "style-src 'self' 'unsafe-inline';",
-          "img-src 'self' data: https: http:;",
-          "font-src 'self' data: https: http:;",
-          "connect-src 'self' https: http:;"
-        ]
-      }
-    })
-  })
 })
 
 async function createWindow() {
