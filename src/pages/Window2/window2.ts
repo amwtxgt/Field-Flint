@@ -7,7 +7,7 @@ import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
-import './styles/main.css'
+import '@/styles/main.css'
 
 const vuetify = createVuetify({
   components,

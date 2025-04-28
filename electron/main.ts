@@ -29,46 +29,16 @@ async function createWindow() {
     },
   })
 
-  // 设置 CSP 头部
-  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': [
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
-          "style-src 'self' 'unsafe-inline';",
-          "img-src 'self' data: https: http:;",
-          "font-src 'self' data: https: http:;",
-          "connect-src 'self' https: http:;"
-        ]
-      }
-    })
-  })
+  
 
-  window2.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': [
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:;",
-          "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
-          "style-src 'self' 'unsafe-inline';",
-          "img-src 'self' data: https: http:;",
-          "font-src 'self' data: https: http:;",
-          "connect-src 'self' https: http:;"
-        ]
-      }
-    })
-  })
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
-    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/window2.html')
+    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + '/src/pages/index/index.html')
+    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/src/pages/Window2/index.html')
     mainWindow.webContents.openDevTools()
   } else {
-    await mainWindow.loadFile(join(__dirname, '../dist/index.html'))
-    await window2.loadFile(join(__dirname, '../dist/window2.html'))
+    await mainWindow.loadFile(join(__dirname, '../dist/pages/index/index.html'))
+    await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
   mainWindow.on('ready-to-show', () => {
