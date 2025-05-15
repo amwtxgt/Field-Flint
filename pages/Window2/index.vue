@@ -4,6 +4,7 @@
       <v-app-bar-title>窗口2</v-app-bar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="toggleTheme">
+        asa
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
     </v-app-bar>

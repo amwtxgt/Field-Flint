@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 
 // 存储当前主题
@@ -20,23 +20,23 @@ async function createWindow() {
   })
   console.log('你好啊')
 
-  // const window2 = new BrowserWindow({
-  //   show: true,
-  //   webPreferences: {
-  //     preload: join(__dirname, './preload.js'),
-  //   },
-  // })
-  //
+  const window2 = new BrowserWindow({
+    show: true,
+    webPreferences: {
+      preload: join(__dirname, './preload.js'),
+    },
+  })
+
 
 
 
   if (process.env.VITE_DEV_SERVER_URL) {
     await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'pages/index/index.html')
-    // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
+    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
     // mainWindow.webContents.openDevTools()
   } else {
     await mainWindow.loadFile(join(__dirname, '../dist/pages/index/index.html'))
-    // await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
+    await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
   mainWindow.on('ready-to-show', () => {
