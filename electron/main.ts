@@ -14,9 +14,10 @@ async function createWindow() {
   const mainWindow = new BrowserWindow({
     show: true,
     webPreferences: {
-      preload: join(__dirname, './preload.js'),
+      preload: join(__dirname, './preloads/index.js'),
     },
   })
+  console.log('你好啊')
 
   // const window2 = new BrowserWindow({
   //   show: true,
@@ -28,7 +29,7 @@ async function createWindow() {
 
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/index/index.html')
+    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'pages/index/index.html')
     // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
     // mainWindow.webContents.openDevTools()
   } else {

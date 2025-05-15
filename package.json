@@ -1,8 +1,8 @@
 {
-  "name": "ff-exe-v2",
+  "name": "fieldflint",
   "version": "1.0.0",
   "description": "Electron multi-window application",
-  "main": "dist-electron/main.js",
+  "main": "z-dist/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build && electron-builder",
@@ -18,7 +18,7 @@
     "@types/node": "^22.15.3",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/tsconfig": "^0.7.0",
-    "electron": "^35.4.0",
+    "electron": "36.1.0",
     "electron-builder": "^26.0.12",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
