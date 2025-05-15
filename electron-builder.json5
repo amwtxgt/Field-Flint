@@ -1,0 +1,30 @@
+/**
+ * @see https://www.electron.build/configuration/configuration
+ */
+{
+  "productName": "Field Flint",
+  "appId": "com.fieldflint.exec",
+  "asar": true,
+  "directories": {
+    "output": "z-release"
+  },
+  "files": [
+    "dist",
+    'dist-electron'
+  ],
+  "win": {
+    "icon": "./public/image/t1-v2.ico",
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "https://ici.oss-accelerate.aliyuncs.com/t1-updater/"
+    }
+  ],
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}

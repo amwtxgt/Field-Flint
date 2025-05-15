@@ -14,9 +14,7 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "assets/*": ["assets/*"],
-      "pages/*": ["pages/*"],
-      "~/*": ["./*"]
+      "/*": ["./*"]
     },
     "types": ["vite/client", "vue", "vuetify"]
   },
