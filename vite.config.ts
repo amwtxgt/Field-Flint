@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
+import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import electron from 'vite-plugin-electron'
-import renderer from 'vite-plugin-electron-renderer'
 import { resolve } from 'path'
 import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
 import killF2 from './killf2'
@@ -10,6 +10,7 @@ import electronPath from 'electron'
 
 let electronApp: ChildProcessWithoutNullStreams | undefined
 
+fs.rmSync('dist-electron', { recursive: true, force: true })
 
 export default defineConfig({
   plugins: [
@@ -18,27 +19,8 @@ export default defineConfig({
     electron([
       {
         entry: 'electron/main.ts',
-        onstart() {
-          if (electronApp) {
-            electronApp.removeAllListeners()
-            electronApp.kill()
-          }
-
-          killF2('electron.exe', () => {
-            // Start Electron.app
-            electronApp = spawn(electronPath as unknown as string, ['.', '--no-sandbox'])
-            // Exit command after Electron.app exits
-            electronApp.once('exit', process.exit)
-
-            electronApp.stdout?.on('data', data => {
-              const str = data.toString().trim()
-              str && console.log(str)
-            })
-            electronApp.stderr?.on('data', data => {
-              const str = data.toString().trim()
-              str && console.error(str)
-            })
-          })
+        onstart({reload}) {
+          reload()
         },
       },
       {
@@ -48,7 +30,6 @@ export default defineConfig({
         },
       },
     ]),
-    renderer(),
   ],
   build: {
     rollupOptions: {

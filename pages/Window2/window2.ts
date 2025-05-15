@@ -6,9 +6,7 @@ import * as directives from 'vuetify/directives'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import 'vuetify/styles'
-import '@mdi/font/css/materialdesignicons.css'
 import 'assets/styles/main.css'
-import 'tailwindcss'
 
 const vuetify = createVuetify({
   components,

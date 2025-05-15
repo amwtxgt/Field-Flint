@@ -15,42 +15,38 @@ async function createWindow() {
     show: true,
     webPreferences: {
       preload: join(__dirname, './preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false,
     },
   })
 
-  const window2 = new BrowserWindow({
-    show: true,
-    webPreferences: {
-      preload: join(__dirname, './preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false,
-    },
-  })
-
-  
+  // const window2 = new BrowserWindow({
+  //   show: true,
+  //   webPreferences: {
+  //     preload: join(__dirname, './preload.js'),
+  //   },
+  // })
+  //
 
 
   if (process.env.VITE_DEV_SERVER_URL) {
     await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/index/index.html')
-    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
-    mainWindow.webContents.openDevTools()
+    // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
+    // mainWindow.webContents.openDevTools()
   } else {
     await mainWindow.loadFile(join(__dirname, '../dist/pages/index/index.html'))
-    await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
+    // await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
 
-  window2.on('ready-to-show', () => {
-    window2.show()
-  })
+  // window2.on('ready-to-show', () => {
+  //   window2.show()
+  // })
 }
 
 app.whenReady().then(createWindow)
+
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
