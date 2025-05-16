@@ -1,13 +1,15 @@
-import {defineConfig} from 'vite'
+import { defineProject } from 'vitest/config'
 import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import electronPlugin from 'vite-plugin-electron'
 import {resolve} from 'path'
 
-fs.rmSync('z-dist', {recursive: true, force: true})
+fs.rmSync('dist', {recursive: true, force: true})
 
-export default defineConfig({
+
+export default defineProject({
+
 	root: './src', // 将根目录更改为src
 	plugins: [
 		vue(),
@@ -16,15 +18,15 @@ export default defineConfig({
 			{
 				entry: 'electron/main.ts',
 				onstart({startup}) {
+					startup().then(async () => {
 
-					startup()
-
+					})
 				},
 				vite: {
 					build: {
 						rollupOptions: {
 							output: {
-								dir: 'z-dist'
+								dir: 'dist'
 							}
 						}
 					},
@@ -39,7 +41,7 @@ export default defineConfig({
 					build: {
 						rollupOptions: {
 							output: {
-								dir: 'z-dist/preloads'
+								dir: 'dist/preloads'
 							}
 						}
 					},
@@ -54,13 +56,31 @@ export default defineConfig({
 				// window2: resolve(__dirname, 'pages/Window2/index.html'),
 			},
 			output: {
-				dir: 'z-dist'
+				dir: 'dist'
 			}
 		},
 	},
 	resolve: {
 		alias: {
-			'/': resolve(__dirname,'src'),
+			'@': resolve(__dirname,'src'),
 		},
 	},
-}) 
+	/* Vitest 配置 */
+	test: {
+		globals: true,
+		environment: 'happy-dom',
+		include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'json', 'html'],
+			exclude: [
+				'node_modules/**',
+				'dist/**',
+				'**/*.d.ts',
+			]
+		},
+		deps: {
+			inline: ['vuetify']
+		}
+	},
+})

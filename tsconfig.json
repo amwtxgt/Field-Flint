@@ -14,9 +14,9 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "/*": ["./src/*"]
+      "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "vue", "vuetify"]
+    "types": ["vite/client", "vue", "vuetify","vitest/config"]
   },
   "include": ["types/**/*.d.ts",
     "src/renderer/pages/**/*.ts",

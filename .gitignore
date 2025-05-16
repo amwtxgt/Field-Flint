@@ -2,6 +2,6 @@ node_modules/
 *.log
 .idea/
 .vscode/
-z-dist/
-z-release/
+dist/
+release/
 package-lock.json

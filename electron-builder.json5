@@ -6,10 +6,10 @@
   "appId": "com.fieldflint.exec",
   "asar": true,
   "directories": {
-    "output": "z-release"
+    "output": "release"
   },
   "files": [
-    "z-dist",
+    "dist",
   ],
   "win": {
     "icon": "./public/image/t1-v2.ico",

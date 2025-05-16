@@ -39,7 +39,7 @@ async function createWindow() {
     // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
     // mainWindow.webContents.openDevTools()
   } else {
-    await mainWindow.loadFile(join(__dirname, '../z-dist/renderer/pages/index/index.html'))
+    await mainWindow.loadFile(join(__dirname, '../dist/renderer/pages/index/index.html'))
     // await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
