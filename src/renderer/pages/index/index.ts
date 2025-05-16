@@ -1,12 +1,12 @@
 import { createApp } from 'vue'
-import App from '/pages/index/index.vue'
+import App from './index.vue'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import 'vuetify/styles'
-import '/assets/styles/main.css'
+import '/renderer/styles/main.css'
 
 const vuetify = createVuetify({
   components,

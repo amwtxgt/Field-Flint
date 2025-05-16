@@ -4,15 +4,11 @@ import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 import electronPlugin from 'vite-plugin-electron'
 import {resolve} from 'path'
-import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
-import killF2 from './killf2'
-import electron from 'electron'
 
-let electronApp: ChildProcessWithoutNullStreams | undefined
-
-fs.rmSync('dist-electron', {recursive: true, force: true})
+fs.rmSync('z-dist', {recursive: true, force: true})
 
 export default defineConfig({
+	root: './src', // 将根目录更改为src
 	plugins: [
 		vue(),
 		vuetify(),
@@ -20,26 +16,9 @@ export default defineConfig({
 			{
 				entry: 'electron/main.ts',
 				onstart({startup}) {
-					if (electronApp) {
-						electronApp.removeAllListeners()
-						electronApp.kill()
-					}
 
-					killF2('electron.exe', () => {
-						// Start Electron.app
-						electronApp = spawn(electron as unknown as string, ['.', '--no-sandbox'])
-						// Exit command after Electron.app exits
-						electronApp.once('exit', process.exit)
+					startup()
 
-						electronApp.stdout?.on('data', data => {
-							const str = data.toString().trim()
-							str && console.log(str)
-						})
-						electronApp.stderr?.on('data', data => {
-							const str = data.toString().trim()
-							str && console.error(str)
-						})
-					})
 				},
 				vite: {
 					build: {
@@ -52,7 +31,7 @@ export default defineConfig({
 				},
 			},
 			{
-				entry: 'electron/preloads/index.ts',
+				entry: 'preloads/index.ts',
 				onstart(options) {
 					options.reload()
 				},
@@ -71,8 +50,8 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			input: {
-				main: resolve(__dirname, 'pages/index/index.html'),
-				window2: resolve(__dirname, 'pages/Window2/index.html'),
+				main: resolve(__dirname, 'src/renderer/pages/index/index.html'),
+				// window2: resolve(__dirname, 'pages/Window2/index.html'),
 			},
 			output: {
 				dir: 'z-dist'
@@ -81,7 +60,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'/': resolve(__dirname),
+			'/': resolve(__dirname,'src'),
 		},
 	},
 }) 

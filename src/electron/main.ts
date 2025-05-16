@@ -11,32 +11,36 @@ ipcMain.on('set-theme', (_, theme) => {
 })
 
 
+
+
 async function createWindow() {
+
   const mainWindow = new BrowserWindow({
     show: true,
     webPreferences: {
       preload: join(__dirname, './preloads/index.js'),
     },
   })
-  console.log('你好啊')
 
-  const window2 = new BrowserWindow({
-    show: true,
-    webPreferences: {
-      preload: join(__dirname, './preload.js'),
-    },
-  })
+
+
+  // const window2 = new BrowserWindow({
+  //   show: true,
+  //   webPreferences: {
+  //     preload: join(__dirname, './preload.js'),
+  //   },
+  // })
 
 
 
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'pages/index/index.html')
-    await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
+    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'renderer/pages/index/index.html')
+    // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
     // mainWindow.webContents.openDevTools()
   } else {
-    await mainWindow.loadFile(join(__dirname, '../dist/pages/index/index.html'))
-    await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
+    await mainWindow.loadFile(join(__dirname, '../z-dist/renderer/pages/index/index.html'))
+    // await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
   mainWindow.on('ready-to-show', () => {

@@ -18,6 +18,10 @@
     },
     "types": ["vite/client", "vue", "vuetify"]
   },
-  "include": ["types/**/*.d.ts", "pages/**/*.ts", "pages/**/*.tsx", "pages/**/*.vue"],
+  "include": ["types/**/*.d.ts",
+    "src/renderer/pages/**/*.ts",
+    "src/renderer/pages/**/*.tsx",
+    "src/renderer/pages/**/*.vue"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 
