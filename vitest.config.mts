@@ -22,7 +22,11 @@ export default mergeConfig(viteConfig, defineConfig({
 			]
 		},
 		deps: {
-			inline: ['vuetify']
+			optimizer: {
+				web: {
+					include: ['vuetify']
+				}
+			}
 		}
 	},
 }))
