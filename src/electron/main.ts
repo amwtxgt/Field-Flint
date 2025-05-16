@@ -11,10 +11,8 @@ ipcMain.on('set-theme', (_, theme) => {
 })
 
 
-
-
 async function createWindow() {
-
+  console.log('试刘芳芳中1312')
   const mainWindow = new BrowserWindow({
     show: true,
     webPreferences: {

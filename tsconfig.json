@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "vue", "vuetify","vitest/config"]
+    "types": ["vite/client", "vue", "vuetify"]
   },
   "include": ["types/**/*.d.ts",
     "src/renderer/pages/**/*.ts",

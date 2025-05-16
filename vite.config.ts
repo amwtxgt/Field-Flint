@@ -1,4 +1,4 @@
-import { defineProject } from 'vitest/config'
+import { defineConfig } from 'vite'
 import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
@@ -8,7 +8,7 @@ import {resolve} from 'path'
 fs.rmSync('dist', {recursive: true, force: true})
 
 
-export default defineProject({
+export default defineConfig({
 
 	root: './src', // 将根目录更改为src
 	plugins: [
@@ -65,22 +65,5 @@ export default defineProject({
 			'@': resolve(__dirname,'src'),
 		},
 	},
-	/* Vitest 配置 */
-	test: {
-		globals: true,
-		environment: 'happy-dom',
-		include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
-		coverage: {
-			provider: 'v8',
-			reporter: ['text', 'json', 'html'],
-			exclude: [
-				'node_modules/**',
-				'dist/**',
-				'**/*.d.ts',
-			]
-		},
-		deps: {
-			inline: ['vuetify']
-		}
-	},
+
 })
