@@ -11,8 +11,8 @@ ipcMain.on('set-theme', (_, theme) => {
 })
 
 
+
 async function createWindow() {
-  console.log('试刘芳芳中1312')
   const mainWindow = new BrowserWindow({
     show: true,
     webPreferences: {
@@ -20,34 +20,16 @@ async function createWindow() {
     },
   })
 
-
-
-  // const window2 = new BrowserWindow({
-  //   show: true,
-  //   webPreferences: {
-  //     preload: join(__dirname, './preload.js'),
-  //   },
-  // })
-
-
-
-
   if (process.env.VITE_DEV_SERVER_URL) {
     await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'renderer/pages/index/index.html')
-    // await window2.loadURL(process.env.VITE_DEV_SERVER_URL + '/pages/Window2/index.html')
-    // mainWindow.webContents.openDevTools()
   } else {
     await mainWindow.loadFile(join(__dirname, '../dist/renderer/pages/index/index.html'))
-    // await window2.loadFile(join(__dirname, '../dist/pages/Window2/index.html'))
   }
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
 
-  // window2.on('ready-to-show', () => {
-  //   window2.show()
-  // })
 }
 
 app.whenReady().then(createWindow)
