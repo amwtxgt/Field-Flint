@@ -21,7 +21,7 @@ async function createWindow() {
   })
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'renderer/pages/index/index.html')
+    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL + 'src/renderer/pages/index/index.html')
   } else {
     await mainWindow.loadFile(join(__dirname, '../dist/renderer/pages/index/index.html'))
   }

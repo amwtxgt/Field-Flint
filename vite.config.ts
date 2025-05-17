@@ -9,60 +9,60 @@ import reloadElectronApp from "./reloadElectronApp";
 
 fs.rmSync('dist', {recursive: true, force: true})
 
-export default defineConfig({
+// 共享的构建配置
+const sharedBuildConfig = (dir: string) => {
+	return {
+		rollupOptions: {
+			output: {
+				dir: dir
+			}
+		}
+	}
+}
 
-	root: './src', // 将根目录更改为src
+export default defineConfig({
 	plugins: [
 		vue(),
 		vuetify(),
 		electronPlugin([
 			{
-				entry: 'electron/main.ts',
+				entry: 'src/electron/main.ts',
 				onstart() {
 					reloadElectronApp()
 				},
 				vite: {
-					build: {
-						rollupOptions: {
-							output: {
-								dir: 'dist'
-							}
-						}
-					},
+					build: sharedBuildConfig('dist'),
 				},
 			},
 			{
-				entry: 'preloads/index.ts',
+				entry: 'src/preloads/index.ts',
 				onstart() {
 					reloadElectronApp()
 				},
 				vite: {
-					build: {
-						rollupOptions: {
-							output: {
-								dir: 'dist/preloads'
-							}
-						}
-					},
+					build: sharedBuildConfig('dist/preloads'),
 				},
 			},
 		]),
 	],
 	build: {
+		emptyOutDir: true,
 		rollupOptions: {
 			input: {
 				main: resolve(__dirname, 'src/renderer/pages/index/index.html'),
-				// window2: resolve(__dirname, 'pages/Window2/index.html'),
+				calendar: resolve(__dirname, 'src/renderer/pages/calendar/index.html'),
 			},
-			output: {
-				dir: 'dist'
-			}
+			output: sharedBuildConfig('dist').rollupOptions.output
 		},
 	},
 	resolve: {
 		alias: {
-			'@': resolve(__dirname,'src'),
+			'@': resolve(__dirname, 'src'),
+			'@components': resolve(__dirname, 'src/renderer/components'),
+			'@assets': resolve(__dirname, 'src/renderer/assets'),
+			'@pages': resolve(__dirname, 'src/renderer/pages'),
+			'@electron': resolve(__dirname, 'src/electron'),
+			'@preloads': resolve(__dirname, 'src/preloads'),
 		},
 	},
-
 })
