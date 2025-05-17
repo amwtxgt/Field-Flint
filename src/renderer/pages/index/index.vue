@@ -16,7 +16,6 @@
               <v-card-title>主窗口内容</v-card-title>
               <v-card-text>
                 <p>{{ t('hello') }}</p>
-                <v-btn @click="openWindow2">打开窗口2</v-btn>
               </v-card-text>
             </v-card>
           </v-col>
@@ -35,15 +34,12 @@ const { t } = useI18n()
 const theme = useTheme()
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-  window.electronAPI.setTheme(theme.global.name.value)
+  electronAPI.setTheme(theme.global.name.value)
 }
 
-const openWindow2 = () => {
-  window.electronAPI.openWindow2()
-}
 
 onMounted(async () => {
-  const savedTheme = await window.electronAPI.getTheme()
+  const savedTheme = await electronAPI.getTheme()
   if (savedTheme) {
     theme.global.name.value = savedTheme
   }

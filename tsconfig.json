@@ -14,14 +14,19 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/renderer/components/*"],
+      "@assets/*": ["./src/renderer/assets/*"],
+      "@pages/*": ["./src/renderer/pages/*"],
+      "@electron/*": ["./src/electron/*"],
+      "@preloads/*": ["./src/preloads/*"]
     },
     "types": ["vite/client", "vue", "vuetify"]
   },
-  "include": ["types/**/*.d.ts",
-    "src/renderer/pages/**/*.ts",
-    "src/renderer/pages/**/*.tsx",
-    "src/renderer/pages/**/*.vue"
+  "include": [
+    "types/**/*.d.ts",
+    "src/renderer/{pages,components}/**/*.{ts,tsx,vue}",
+    "src/{electron,preloads}/**/*.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 
