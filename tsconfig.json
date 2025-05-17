@@ -21,12 +21,15 @@
       "@electron/*": ["./src/electron/*"],
       "@preloads/*": ["./src/preloads/*"]
     },
-    "types": ["vite/client", "vue", "vuetify"]
+    "types": ["vite/client", "vue", "vuetify"],
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": [
     "types/**/*.d.ts",
-    "src/renderer/{pages,components}/**/*.{ts,tsx,vue}",
-    "src/{electron,preloads}/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 } 
