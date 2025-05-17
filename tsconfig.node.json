@@ -6,5 +6,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["vite.config.ts",
-    "src/electron/**/*.ts", "killf2.ts"]
+    "src/electron/**/*.ts", "killf2.ts","reloadElectronApp.ts"]
 } 
