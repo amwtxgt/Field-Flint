@@ -10,6 +10,7 @@ import killf2 from './killf2'
 
 fs.rmSync('dist', {recursive: true, force: true})
 
+
 export default defineConfig({
 
 	root: './src', // 将根目录更改为src
@@ -62,7 +63,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@': resolve(__dirname, 'src'),
+			'@': resolve(__dirname,'src'),
 		},
 	},
 
