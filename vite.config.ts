@@ -6,10 +6,8 @@ import electronPlugin from 'vite-plugin-electron'
 import {resolve} from 'path'
 
 import reloadElectronApp from "./reloadElectronApp";
-import killf2 from './killf2'
 
 fs.rmSync('dist', {recursive: true, force: true})
-
 
 export default defineConfig({
 
@@ -35,7 +33,7 @@ export default defineConfig({
 			},
 			{
 				entry: 'preloads/index.ts',
-				onstart(options) {
+				onstart() {
 					reloadElectronApp()
 				},
 				vite: {
