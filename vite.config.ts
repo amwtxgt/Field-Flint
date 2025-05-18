@@ -10,11 +10,11 @@ import reloadElectronApp from "./reloadElectronApp";
 fs.rmSync('dist', {recursive: true, force: true})
 
 // 共享的构建配置
-const sharedBuildConfig = (dir: string) => {
+const sharedBuildConfig = (dir: string,format:  'esm' | 'cjs') => {
 	return {
 		rollupOptions: {
 			output: {
-				format: 'esm',
+				format: format,
 				dir: dir
 			}
 		}
@@ -32,7 +32,7 @@ export default defineConfig({
 					reloadElectronApp()
 				},
 				vite: {
-					build: sharedBuildConfig('dist'),
+					build: sharedBuildConfig('dist',  'esm'),
 				},
 			},
 			{
@@ -41,7 +41,7 @@ export default defineConfig({
 					reloadElectronApp()
 				},
 				vite: {
-					build: sharedBuildConfig('dist/preloads'),
+					build: sharedBuildConfig('dist/preloads','cjs'),
 				},
 			},
 		]),
@@ -53,7 +53,7 @@ export default defineConfig({
 				main: resolve(__dirname, 'src/renderer/pages/index/index.html'),
 				calendar: resolve(__dirname, 'src/renderer/pages/calendar/index.html'),
 			},
-			output: sharedBuildConfig('dist').rollupOptions.output
+			output: sharedBuildConfig('dist','esm').rollupOptions.output
 		},
 	},
 	resolve: {

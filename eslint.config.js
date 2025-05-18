@@ -1,15 +1,15 @@
-import js from '@eslint/js'
-import typescript from '@typescript-eslint/eslint-plugin'
-import typescriptParser from '@typescript-eslint/parser'
-import vue from 'eslint-plugin-vue'
-import prettier from 'eslint-config-prettier'
-
+import js from '@eslint/js' // 引入 ESLint 官方的 JavaScript 规则配置
+import typescript from '@typescript-eslint/eslint-plugin' // 引入 TypeScript 的 ESLint 插件
+import typescriptParser from '@typescript-eslint/parser' // 引入 TypeScript 专用的解析器
+import vue from 'eslint-plugin-vue' // 引入 Vue.js 的 ESLint 插件，用于检查 Vue 文件
+import prettier from 'eslint-config-prettier' // 关闭 ESLint 中与 Prettier 冲突的规则
+import globals from 'globals'
 export default [
-  ...vue.configs['flat/recommended'],
+  ...vue.configs['flat/recommended'], // 使用 Vue 推荐的 ESLint 配置
   {
-    ignores: [
+    ignores: [ // 指定需要忽略的文件/目录
       'dist/**',
-      'dist-ssr/**',
+      'release/**',
       'node_modules/**',
       '*.log',
       '.env',
@@ -27,40 +27,30 @@ export default [
       'build/**'
     ]
   },
-  js.configs.recommended,
-
+  js.configs.recommended, // 使用 ESLint 的推荐 JavaScript 规则配置
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.tsx'], // 仅对 TypeScript 文件生效的配置
     languageOptions: {
-      parser: typescriptParser,
+      parser: typescriptParser, // 使用 TypeScript 解析器
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        ecmaVersion: 'latest', // 支持最新的 ECMAScript 版本
+        sourceType: 'module', // 使用模块化语法
       },
-      globals: {
-        // 浏览器环境
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly',
-        // Node.js 环境
-        process: 'readonly',
-        __dirname: 'readonly',
-        require: 'readonly',
-        module: 'readonly',
+      globals: { // 设置全局变量为只读
+        ...globals['shared-node-browser'],
         // Electron 环境
-        electron: 'readonly',
         electronAPI: 'readonly'
       }
     },
     plugins: {
-      '@typescript-eslint': typescript
+      '@typescript-eslint': typescript // 加载 TypeScript 插件
     },
-    rules: {
+    rules: { // 自定义 TypeScript 相关的规则
       // TypeScript rules
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn'
+      '@typescript-eslint/no-explicit-any': 'warn', // 不允许使用 any 类型，但只是警告而不是报错
+      '@typescript-eslint/explicit-function-return-type': 'off', // 不强制要求函数显式返回类型
+      '@typescript-eslint/no-unused-vars': 'warn' // 不允许未使用的变量，警告级别
     }
   },
-  prettier
-] 
+  prettier // 应用 Prettier 配置以避免冲突
+]
