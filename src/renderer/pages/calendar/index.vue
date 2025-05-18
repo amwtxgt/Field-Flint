@@ -35,11 +35,11 @@ const { t } = useI18n()
 const theme = useTheme()
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-  window.electronAPI.setTheme(theme.global.name.value)
+  electronAPI.setTheme(theme.global.name.value)
 }
 
 onMounted(async () => {
-  const savedTheme = await window.electronAPI.getTheme()
+  const savedTheme = await electronAPI.getTheme()
   if (savedTheme) {
     theme.global.name.value = savedTheme
   }

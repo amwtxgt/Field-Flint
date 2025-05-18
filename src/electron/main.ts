@@ -1,5 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
+import { join,dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // 存储当前主题
 let currentTheme = 'light'
@@ -9,8 +13,6 @@ ipcMain.handle('get-theme', () => currentTheme)
 ipcMain.on('set-theme', (_, theme) => {
   currentTheme = theme
 })
-
-
 
 async function createWindow() {
   const mainWindow = new BrowserWindow({

@@ -6,7 +6,7 @@ import * as directives from 'vuetify/directives'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
 import 'vuetify/styles'
-import '@/src/renderer/styles/main.css'
+import '@/renderer/styles/main.css'
 
 const vuetify = createVuetify({
   components,

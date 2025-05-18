@@ -1,4 +1,4 @@
-import {defineConfig} from 'vite'
+import {BuildEnvironmentOptions, defineConfig} from 'vite'
 import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
@@ -14,10 +14,11 @@ const sharedBuildConfig = (dir: string) => {
 	return {
 		rollupOptions: {
 			output: {
+				format: 'esm',
 				dir: dir
 			}
 		}
-	}
+	} as BuildEnvironmentOptions
 }
 
 export default defineConfig({
