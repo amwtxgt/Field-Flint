@@ -8,6 +8,8 @@ import { createPinia } from 'pinia'
 import 'vuetify/styles'
 import '@/renderer/styles/main.css'
 
+electronAPI.setTheme('light')
+
 const vuetify = createVuetify({
   components,
   directives,

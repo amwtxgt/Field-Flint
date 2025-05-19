@@ -20,7 +20,7 @@ export default function killF2(name: string, cb: Function) {
         try {
           console.log('关闭进程', processMessage[1])
           process.kill(Number(processMessage[1]))
-        } catch (e: any) {
+        } catch (e: unknown) {
           console.log('关闭线程错误', e.toString())
         }
       }

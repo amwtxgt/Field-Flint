@@ -29,6 +29,17 @@ export default [
   },
   js.configs.recommended, // 使用 ESLint 的推荐 JavaScript 规则配置
   {
+    // 为 Vue 文件设置全局变量
+    files: ['**/*.vue'],
+    languageOptions: {
+      globals: {
+        ...globals.browser, // 添加浏览器全局变量，包含 window
+        // Electron 环境
+        electronAPI: 'readonly'
+      }
+    }
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'], // 仅对 TypeScript 文件生效的配置
     languageOptions: {
       parser: typescriptParser, // 使用 TypeScript 解析器
@@ -37,7 +48,8 @@ export default [
         sourceType: 'module', // 使用模块化语法
       },
       globals: { // 设置全局变量为只读
-        ...globals['shared-node-browser'],
+        ...globals.node, // 添加 Node.js 全局变量，包含 process
+        ...globals.browser, // 添加浏览器全局变量，包含 window
         // Electron 环境
         electronAPI: 'readonly'
       }
@@ -50,6 +62,17 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn', // 不允许使用 any 类型，但只是警告而不是报错
       '@typescript-eslint/explicit-function-return-type': 'off', // 不强制要求函数显式返回类型
       '@typescript-eslint/no-unused-vars': 'warn' // 不允许未使用的变量，警告级别
+    }
+  },
+  // 为类型声明文件（.d.ts）设置特殊规则
+  {
+    files: ['**/*.d.ts'],
+    languageOptions: {
+      parser: typescriptParser,
+    },
+    rules: {
+      'no-unused-vars': 'off', // 关闭未使用变量的检查
+      '@typescript-eslint/no-unused-vars': 'off' // 关闭 TypeScript 特有的未使用变量检查
     }
   },
   prettier // 应用 Prettier 配置以避免冲突
