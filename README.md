@@ -18,3 +18,4 @@ npm run test:run
 
 # 生成测试覆盖率报告
 npm run coverage
+```

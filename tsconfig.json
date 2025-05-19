@@ -1,35 +1,35 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/renderer/components/*"],
-      "@assets/*": ["./src/renderer/assets/*"],
-      "@pages/*": ["./src/renderer/pages/*"],
-      "@electron/*": ["./src/electron/*"],
-      "@preloads/*": ["./src/preloads/*"]
-    },
-    "types": ["vite/client", "vue", "vuetify", "node"]
-  },
-  "include": [
-    "types/**/*.d.ts",
-    "src/renderer/**/*.ts",
-    "src/renderer/**/*.d.ts", 
-    "src/renderer/**/*.vue",
-    "src/preloads/**/*.ts",
-    "src/preloads/**/*.d.ts",
-  ],
-  "references": [{ "path": "./tsconfig.node.json" }]
-} 
+   "compilerOptions": {
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
+      "strict": true,
+      "jsx": "preserve",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "lib": ["ESNext", "DOM"],
+      "skipLibCheck": true,
+      "noEmit": true,
+      "baseUrl": ".",
+      "paths": {
+         "@/*": ["./src/*"],
+         "@components/*": ["./src/renderer/components/*"],
+         "@assets/*": ["./src/renderer/assets/*"],
+         "@pages/*": ["./src/renderer/pages/*"],
+         "@electron/*": ["./src/electron/*"],
+         "@preloads/*": ["./src/preloads/*"]
+      },
+      "types": ["vite/client", "vue", "vuetify", "node"]
+   },
+   "include": [
+      "types/**/*.d.ts",
+      "src/renderer/**/*.ts",
+      "src/renderer/**/*.d.ts",
+      "src/renderer/**/*.vue",
+      "src/preloads/**/*.ts",
+      "src/preloads/**/*.d.ts"
+   ],
+   "references": [{ "path": "./tsconfig.node.json" }]
+}
