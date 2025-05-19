@@ -1,6 +1,8 @@
-import { contextBridge, ipcRenderer } from 'electron'
+
+const electron = require('electron')
+
 console.log('preload OK')
-contextBridge.exposeInMainWorld('electronAPI', {
-  setTheme: (theme: string) => ipcRenderer.send('set-theme', theme),
-  getTheme: () => ipcRenderer.invoke('get-theme'),
+electron.contextBridge.exposeInMainWorld('electronAPI', {
+  setTheme: (theme: string) => electron.ipcRenderer.send('set-theme', theme),
+  getTheme: () => electron.ipcRenderer.invoke('get-theme'),
 }) 

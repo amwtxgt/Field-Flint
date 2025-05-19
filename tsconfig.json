@@ -21,7 +21,7 @@
       "@electron/*": ["./src/electron/*"],
       "@preloads/*": ["./src/preloads/*"]
     },
-    "types": ["vite/client", "vue", "vuetify"]
+    "types": ["vite/client", "vue", "vuetify", "node"]
   },
   "include": [
     "types/**/*.d.ts",
